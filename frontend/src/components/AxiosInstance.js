@@ -6,7 +6,6 @@ const axiosInstance = axios.create({
 let isRefreshing = false;
 let failedQueue = [];
 
-// Helper to process queued requests after refresh
 const processQueue = (error, token = null) => {
   failedQueue.forEach(prom => {
     if (error) {
@@ -18,7 +17,6 @@ const processQueue = (error, token = null) => {
   failedQueue = [];
 };
 
-// Request interceptor (optional: attach Authorization header if using JWT)
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = JSON.parse(localStorage.getItem("token"));
@@ -30,7 +28,6 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor for 401 handling & refresh
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -40,7 +37,6 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       if (isRefreshing) {
-        // Queue the request while refresh is in progress
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })

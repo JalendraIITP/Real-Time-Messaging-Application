@@ -36,14 +36,8 @@ function SideDrawer({ axiosInstance }) {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
 
-  const {
-    setSelectedChat,
-    user,
-    notification,
-    setNotification,
-    chats,
-    setChats,
-  } = ChatState();
+  const { setSelectedChat, user, notification, setNotification, chats, setChats } =
+    ChatState();
 
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -109,17 +103,19 @@ function SideDrawer({ axiosInstance }) {
 
   return (
     <>
+      {/* Top Bar */}
       <Box
-        d="flex"
+        display="flex"
         justifyContent="space-between"
         alignItems="center"
         bg="white"
         w="100%"
-        p="5px 10px 5px 10px"
+        p="5px 10px"
         borderWidth="5px"
       >
+        {/* Search Button */}
         <Tooltip label="Search users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" onClick={onOpen}>
+          <Button variant="ghost" onClick={onOpen} display="flex" alignItems="center">
             <i className="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}>
               Search User
@@ -127,21 +123,18 @@ function SideDrawer({ axiosInstance }) {
           </Button>
         </Tooltip>
 
+        {/* App Title */}
         <Text fontSize="2xl" fontFamily="Work sans">
           Chat App
         </Text>
 
-        <div>
+        {/* Notification & Avatar */}
+        <Box display="flex" alignItems="center">
+          {/* Notification */}
           <Menu>
-            <MenuButton p={1}>
+            <MenuButton p={1} display="flex" alignItems="center">
               {notification.length > 0 && (
-                <Badge
-                  colorScheme="red"
-                  borderRadius="full"
-                  px="2"
-                  fontSize="0.8em"
-                  mr={1}
-                >
+                <Badge colorScheme="red" borderRadius="full" px="2" fontSize="0.8em" mr={1}>
                   {notification.length}
                 </Badge>
               )}
@@ -165,6 +158,7 @@ function SideDrawer({ axiosInstance }) {
             </MenuList>
           </Menu>
 
+          {/* User Avatar */}
           <Menu>
             <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
               <Avatar size="sm" cursor="pointer" name={user.name} src={user.pic} />
@@ -177,20 +171,22 @@ function SideDrawer({ axiosInstance }) {
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
-        </div>
+        </Box>
       </Box>
 
+      {/* Drawer for Search */}
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
           <DrawerBody>
-            <Box d="flex" pb={2}>
+            <Box display="flex" alignItems="center" pb={2}>
               <Input
                 placeholder="Search by name or email"
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                flex="1"
               />
               <Button onClick={handleSearch}>Search</Button>
             </Box>
@@ -205,7 +201,7 @@ function SideDrawer({ axiosInstance }) {
                 />
               ))
             )}
-            {loadingChat && <Spinner ml="auto" d="flex" />}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

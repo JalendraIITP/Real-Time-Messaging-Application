@@ -13,7 +13,7 @@ const Chatpage = () => {
   return (
     <div style={{ width: "100%" }}>
       {user && <SideDrawer axiosInstance={axiosInstance} />}
-      <Box d="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
+      <Box display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
         {user && <MyChats fetchAgain={fetchAgain} axiosInstance={axiosInstance} />}
         {user && (
           <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} axiosInstance={axiosInstance}/>
