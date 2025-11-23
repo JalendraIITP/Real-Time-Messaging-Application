@@ -26,7 +26,7 @@ connectDB().then(() => {
   const io = new Server(server, {
       pingTimeout: 60000,
       cors: {
-        origin: "*",
+        origin: ["https://real-time-messaging-application-4.onrender.com"],
       }
   });
 
@@ -67,7 +67,7 @@ connectDB().then(() => {
 const app = express();
 app.use(morgan("dev"));
 app.use(cors({
-    origin: "*",
+    origin: ["https://real-time-messaging-application-4.onrender.com"],
     method: ["POST", "GET"],
     credentials: true
 }));
