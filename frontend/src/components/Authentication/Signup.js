@@ -60,17 +60,29 @@ const Signup = () => {
           withCredentials: true
         }
       );
-      toast({
-        title: "Registration Successful",
+      if(data.user && JSON.stringify(data.user) && JSON.stringify(data.accessToken)){
+        toast({
+        title: "Login Successful",
         status: "success",
         duration: 5000,
         isClosable: true,
         position: "bottom",
-      });
-      localStorage.setItem("userInfo", JSON.stringify(data.user));
-      localStorage.setItem("token", JSON.stringify(data.accessToken));
-      setPicLoading(false);
-      history.push("/chats");
+        });
+        setUser(data.user);
+        localStorage.setItem("userInfo", JSON.stringify(data.user));
+        localStorage.setItem("token", JSON.stringify(data.accessToken));
+        history.push("/chats");
+      }else{
+        console.log(error)
+        toast({
+          title: "Error Occured!",
+          description: "Server is not responding!" ,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
     } catch (error) {
       toast({
         title: "Error Occured!",
