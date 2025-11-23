@@ -67,7 +67,7 @@ connectDB().then(() => {
 const app = express();
 app.use(morgan("dev"));
 app.use(cors({
-    origin: [process.env.ORIGIN],
+    origin: "*",
     method: ["POST", "GET"],
     credentials: true
 }));
