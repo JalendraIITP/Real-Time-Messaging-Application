@@ -80,7 +80,7 @@ npm start
 ## 😎 Results
 ### 🤩 Cache Optimization
 #### Without Cache
-![image](https://github.com/JalendraIITP/Real-Time-ChatApplication/blob/master/backend/withoutCache.png)
+![image](https://github.com/JalendraIITP/Real-Time-Messaging-Application/blob/master/backend/withoutCache.png)
 #### With Cache
-   ![image](https://github.com/JalendraIITP/Real-Time-ChatApplication/blob/master/backend/withCache.png)
+   ![image](https://github.com/JalendraIITP/Real-Time-Messaging-Application/blob/master/backend/withCache.png)
 
