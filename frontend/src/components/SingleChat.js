@@ -12,7 +12,7 @@ import {IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import io from "socket.io-client";
-const ENDPOINT = "http://localhost:8000"; 
+const ENDPOINT = "https://real-time-messaging-application-0.onrender.com"; 
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain, axiosInstance }) => {
